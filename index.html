@@ -143,7 +143,7 @@
 </div>
 
 <script>
-const API_KEY = 'AQ.Ab8RN6JyhJV811TkV_W-mq_5iLRbfEneeO6kVO_aKU5bj25fdg'; // aistudio.google.com/apikey se key lo
+const API_KEY = 'AQ.Ab8RN6L8mh9Sm3tAcuCDEC_M5omtfi7qsVglCcRuuwTFMzgyzA'; // aistudio.google.com/apikey se key lo
 let selectedFile = null;
 
 function handleDrop(e) {
@@ -213,7 +213,7 @@ async function runAnalysis() {
 
     const prompt = `You are an expert RFP analysis AI for SPS (Software Productivity Strategists).
 Analyze this RFP document and extract structured data.
-Respond ONLY with valid JSON — no markdown, no explanation, just the raw JSON object.
+Rules: Respond ONLY with a single valid complete JSON object. No markdown. No explanation. No truncation. Always close all brackets properly.
 
 {
   "deliverables": ["every specific output, document, diagram, or deliverable required"],
@@ -236,7 +236,7 @@ ${text.slice(0, 10000)}`;
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { maxOutputTokens: 2048, temperature: 0.2 }
+          generationConfig: { maxOutputTokens: 8192, temperature: 0.1 }
         })
       }
     );
